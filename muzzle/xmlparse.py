@@ -19,16 +19,14 @@ class XMLNone(object):
 
 
 class XMLParser(object):
-    def __init__(self, namespaces):
-        self.namespaces = {
-        }
-        self.dict_namespaces = namespaces
+    def __init__(self, namespaces={}):
+        self.namespaces = namespaces
 
     def parse(self, content):
         try:
             return etree.fromstring(content)
         except Exception as e:
-            raise errors.XMLParsingError("Error while parsing XML: %s" % e)
+            raise errors.XMLParserError("Error while parsing XML: %s" % e)
 
     def find(self, xml, path):
         if isinstance(path, list):
@@ -54,10 +52,12 @@ class XMLParser(object):
         if isinstance(xml, Element):
             xml = self.tostring(xml)
 
+        # reverse key/values for xmltodict
+        dict_namespaces = {v: k for k, v in self.namespaces.items()}
         dict_args = {
             'dict_constructor': dict,
             'process_namespaces': True,
-            'namespaces': self.dict_namespaces,
+            'namespaces': dict_namespaces,
             'attr_prefix': '',
             'cdata_key': 'text',
         }
@@ -66,3 +66,4 @@ class XMLParser(object):
 
     def namespace(self, element):
         m = re.match(r'\{(.*)\}', element.tag)
+        return m.group(1) if m else ''

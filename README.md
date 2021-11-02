@@ -10,6 +10,8 @@ Little XML parser library based on defusedxml and xmltodict.
 
 * [Installation](#installation)
 * [Usage](#usage)
+  * [Parse XML](#parse-xml---muzzleparse)
+  * [Find elements with XPath](#find-elements-with-xpath---muzzlefind--muzzlefindall)
 * [Release](#release)
 
 ## Installation

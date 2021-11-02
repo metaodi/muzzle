@@ -39,5 +39,5 @@ To create a new release, follow these steps (please respect [Semantic Versioning
 <!-- Badges -->
 [pypi-image]: https://img.shields.io/pypi/v/muzzle
 [pypi-url]: https://pypi.org/project/muzzle/
-[build-image]: https://github.com/metaodi/muzzle/actions/workflows/build.yml/badge.svg
-[build-url]: https://github.com/metaodi/muzzle/actions/workflows/build.yml
+[build-image]: https://github.com/metaodi/muzzle/actions/workflows/lint_python.yml/badge.svg
+[build-url]: https://github.com/metaodi/muzzle/actions/workflows/lint_python.yml

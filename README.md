@@ -24,6 +24,40 @@ $ pip install muzzle
 
 See the [`examples` directory](/examples) for more scripts.
 
+### Parse XML - `muzzle.parse`
+
+```python
+>>> import muzzle
+>>> xml = '<?xml version="1.0"?><fields><field name="myfield">Hallo Velo</field></fields>'
+>>> obj = muzzle.parse(xml)
+>>> obj
+<Element 'fields' at 0x7f78b3d961d0>
+```
+
+### Find element(s) with XPath - `muzzle.find` / `muzzle.findall`
+
+**`find()`**:
+
+```python
+>>> import muzzle
+>>> xml = '<?xml version="1.0"?><fields><field name="myfield">Hallo Velo</field></fields>'
+>>> obj = muzzle.parse(xml)
+>>> elem = muzzle.find(obj, './field')
+>>> elem.text
+'Hallo Velo'
+>>> elem.attrib
+{'name': 'myfield'}
+```
+
+**`findall()`**:
+
+```python
+>>> import muzzle
+>>> xml = '<?xml version="1.0"?><fields><field name="myfield">Hallo</field><field name="otherfield">Velo</field></fields>'
+>>> obj = muzzle.parse(xml)
+>>> muzzle.findall(obj, './field')
+[<Element 'field' at 0x7f78b3d96230>, <Element 'field' at 0x7f78b3d962f0>]
+```
 
 ## Release
 

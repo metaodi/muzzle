@@ -38,10 +38,10 @@ class XMLParser(object):
                 if not isinstance(elem, XMLNone):
                     return elem
             return XMLNone()
-        elem = xml.find(path, self.namespaces)
-        if elem is None:
+        result = xml.find(path, self.namespaces)
+        if result is None:
             return XMLNone()
-        return elem
+        return result
 
     def findall(self, xml: Element, path: str) -> list[Element]:
         return xml.findall(path, self.namespaces)

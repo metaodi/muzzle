@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "muzzle"
 authors = [{name = "Stefan Oderbolz", email = "odi@metaodi.ch"}]
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 classifiers = ["License :: OSI Approved :: MIT License"]
 description = "A tiny xmlparser"
 dynamic = ["version"]
@@ -20,12 +20,16 @@ test = [
     "black",
     "flake8",
     "mock",
+    "mypy",
     "pytest",
     "pytest-cov",
 ]
 
 [project.urls]
 Home = "https://github.com/metaodi/muzzle"
+
+[tool.mypy]
+ignore_missing_imports = true
 
 [tool.hatch.version]
 path = "muzzle/__init__.py"

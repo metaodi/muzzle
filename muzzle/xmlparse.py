@@ -1,4 +1,5 @@
 import re
+from typing import Optional, Union
 from xml.etree.ElementTree import Element
 import defusedxml.ElementTree as etree
 import xmltodict
@@ -6,47 +7,51 @@ from . import errors
 
 
 class XMLNone(object):
-    def __nonzero__(self):
+    def __nonzero__(self) -> bool:
         return False
 
-    def __bool__(self):
+    def __bool__(self) -> bool:
         return False
 
-    def iter(self):
+    def iter(self) -> list:
         return []
 
-    text = None
+    text: Optional[str] = None
 
 
 class XMLParser(object):
-    def __init__(self, namespaces={}):
+    def __init__(self, namespaces: dict[str, str] = {}) -> None:
         self.namespaces = namespaces
 
-    def parse(self, content):
+    def parse(self, content: Union[str, bytes]) -> Element:
         try:
             return etree.fromstring(content)
         except Exception as e:
             raise errors.XMLParserError("Error while parsing XML: %s" % e)
 
-    def find(self, xml, path):
+    def find(
+        self, xml: Element, path: Union[str, list[str]]
+    ) -> Union[Element, XMLNone]:
         if isinstance(path, list):
             for p in path:
                 elem = self.find(xml, p)
                 if not isinstance(elem, XMLNone):
                     return elem
             return XMLNone()
-        elem = xml.find(path, self.namespaces)
-        if elem is None:
+        result = xml.find(path, self.namespaces)
+        if result is None:
             return XMLNone()
-        return elem
+        return result
 
-    def findall(self, xml, path):
+    def findall(self, xml: Element, path: str) -> list[Element]:
         return xml.findall(path, self.namespaces)
 
-    def tostring(self, xml):
+    def tostring(self, xml: Element) -> bytes:
         return etree.tostring(xml)
 
-    def todict(self, xml, **kwargs):
+    def todict(
+        self, xml: Union[Element, XMLNone, str, bytes], **kwargs
+    ) -> Optional[dict]:
         if isinstance(xml, XMLNone):
             return None
         if isinstance(xml, Element):
@@ -64,6 +69,6 @@ class XMLParser(object):
         dict_args.update(kwargs)
         return dict(xmltodict.parse(xml, **dict_args))
 
-    def namespace(self, element):
+    def namespace(self, element: Element) -> str:
         m = re.match(r"\{(.*)\}", element.tag)
         return m.group(1) if m else ""

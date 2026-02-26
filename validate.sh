@@ -14,5 +14,8 @@ black --check .
 # Check PEP-8 code style and McCabe complexity
 flake8 . --count --show-source --statistics
 
+# Check type hints
+mypy muzzle/
+
 # run tests with test coverage
 pytest tests/

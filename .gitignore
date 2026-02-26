@@ -3,5 +3,6 @@ muzzle.egg-info
 *.swp
 .coverage
 pyenv
+.venv
 .env
 dist/

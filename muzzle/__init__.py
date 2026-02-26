@@ -1,7 +1,7 @@
 """A tiny xmlparser"""
 
-__version__ = '0.0.1'
-__all__ = ['xmlparse', 'errors']
+__version__ = "0.0.1"
+__all__ = ["xmlparse", "errors"]
 
 from .errors import MuzzleError  # noqa
 from .xmlparse import XMLParser  # noqa
@@ -29,7 +29,7 @@ def tostring(xml):
 
 
 def todict(xml, **kwargs):
-    params = ['namespaces']
-    parser = XMLParser(namespaces=kwargs.get('namespaces', {}))
+    params = ["namespaces"]
+    parser = XMLParser(namespaces=kwargs.get("namespaces", {}))
     dict_args = {k: v for k, v in kwargs.items() if k not in params}
     return parser.todict(xml, **dict_args)

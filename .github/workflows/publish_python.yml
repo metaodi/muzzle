@@ -12,12 +12,13 @@ jobs:
     permissions:
       id-token: write
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v4
 
     - name: Install uv
       uses: astral-sh/setup-uv@v5
 
     - name: Build and publish
-      run: |
-        uv build
-        uv publish
+      run: uv build
+
+    - name: Publish to PyPI
+      run: uv publish

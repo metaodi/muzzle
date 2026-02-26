@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 name = "muzzle"
 authors = [{name = "Stefan Oderbolz", email = "odi@metaodi.ch"}]
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.9"
 classifiers = ["License :: OSI Approved :: MIT License"]
 description = "A tiny xmlparser"
 dynamic = ["version"]

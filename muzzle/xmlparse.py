@@ -55,15 +55,15 @@ class XMLParser(object):
         # reverse key/values for xmltodict
         dict_namespaces = {v: k for k, v in self.namespaces.items()}
         dict_args = {
-            'dict_constructor': dict,
-            'process_namespaces': True,
-            'namespaces': dict_namespaces,
-            'attr_prefix': '',
-            'cdata_key': 'text',
+            "dict_constructor": dict,
+            "process_namespaces": True,
+            "namespaces": dict_namespaces,
+            "attr_prefix": "",
+            "cdata_key": "text",
         }
         dict_args.update(kwargs)
         return dict(xmltodict.parse(xml, **dict_args))
 
     def namespace(self, element):
-        m = re.match(r'\{(.*)\}', element.tag)
-        return m.group(1) if m else ''
+        m = re.match(r"\{(.*)\}", element.tag)
+        return m.group(1) if m else ""

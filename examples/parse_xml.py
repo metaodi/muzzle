@@ -1,6 +1,6 @@
 import muzzle
 
-xml = '''<?xml version="1.0" encoding="UTF-8"?>
+xml = """<?xml version="1.0" encoding="UTF-8"?>
 <document>
     <header>
         <fields>
@@ -14,7 +14,7 @@ xml = '''<?xml version="1.0" encoding="UTF-8"?>
         <image url="https://example.com/test.png" title="Test-Image"></image>
     </body>
 </document>
-'''
+"""
 
 xmlparser = muzzle.XMLParser()
 obj = xmlparser.parse(xml)

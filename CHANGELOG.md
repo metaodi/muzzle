@@ -3,6 +3,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project follows [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+### Changed
+- **BC-Break**: Python >=3.9 is required
+- Switch from `flit` to `uv`
+
+### Added
+- Add type hints
+- Add `mypy` type checking to the build
 
 ## [0.0.1] - 2021-11-02
 ### Added
